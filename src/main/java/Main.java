@@ -1,31 +1,37 @@
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.*;
+import com.amazon.speech.speechlet.Speechlet;
+import com.amazon.speech.speechlet.servlet.SpeechletServlet;
+import hue.HueSpeechlet;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.*;
+import org.eclipse.jetty.servlet.ServletContextHandler;
+import org.eclipse.jetty.servlet.ServletHolder;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.*;
 
 public class Main extends HttpServlet {
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
 
-    if (req.getRequestURI().endsWith("/db")) {
+  public static final String HOME_IP = "146.115.86.220";
+
+  @Override
+  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    if (req.getRequestURI().endsWith("/db"))
       showDatabase(req,resp);
-    } else {
+    else
       showHome(req,resp);
-    }
   }
 
-  private void showHome(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
+  private void showHome(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     resp.getWriter().print("Hello from Alexa!");
   }
 
-  private void showDatabase(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
+  private void showDatabase(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     Connection connection = null;
     try {
@@ -67,7 +73,14 @@ public class Main extends HttpServlet {
     context.setContextPath("/");
     server.setHandler(context);
     context.addServlet(new ServletHolder(new Main()),"/*");
+    context.addServlet(new ServletHolder(createServlet(new HueSpeechlet())), "/hue");
     server.start();
     server.join();
+  }
+
+  private static SpeechletServlet createServlet(final Speechlet speechlet) {
+    SpeechletServlet servlet = new SpeechletServlet();
+    servlet.setSpeechlet(speechlet);
+    return servlet;
   }
 }
