@@ -10,7 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="library" name="alexa-appkit-1.0.81.2" level="project" />
+    <orderEntry type="library" name="alexa-appkit-1.0.81.2" level="application" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-servlet:9.2.10.v20150310" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-security:9.2.10.v20150310" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.jetty:jetty-server:9.2.10.v20150310" level="project" />
