@@ -51,7 +51,11 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
     public SpeechletResponse handleChangeScene(Intent intent) {
         Map<String, Slot> slots = intent.getSlots();
         Slot sceneSlot = slots.get("SceneName");
-        sceneSlot.getValue();
+        String reqScene = sceneSlot.getValue();
+
+        LightingClient.changeLights(reqScene, null);
+
+
         return buildSpeechletResponse("Lighting",
                 "Changing scene to " + sceneSlot.getValue(),
                 "", true);
