@@ -4,6 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 
@@ -34,9 +35,13 @@ public class LightingClient {
         }
 
         try {
+            JSONObject body = new JSONObject();
+            body.put("scene", nameToId.get(sceneGuess));
+            body.put("transitiontime", 30);
+
             HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
                     .header("Content-Type", "application/json")
-                    .body(new JsonNode("{'scene': '" + nameToId.get(sceneGuess) + "'}"))
+                    .body(new JsonNode(body.toString()))
                     .asJson();
         }
         catch (Exception e) {
