@@ -44,9 +44,6 @@ public class UberSpeechlet extends HttpServlet implements Speechlet {
         if ("UberTime".equals(intentName)) {
             return handleUberTime(intent);
         }
-        else if ("TurnOff".equals(intentName)) {
-            return handleLightsOff(intent);
-        }
         else {
             throw new SpeechletException("Invalid Intent");
         }
@@ -60,7 +57,7 @@ public class UberSpeechlet extends HttpServlet implements Speechlet {
         String scene = LightingClient.changeLights(reqScene);
 
         return buildSpeechletResponse("Uber",
-                "The nearest Uber is 5 minutes away."
+                "The nearest Uber is 5 minutes away.",
                 "", true);
     }
 
