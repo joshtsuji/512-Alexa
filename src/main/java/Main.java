@@ -23,8 +23,10 @@ public class Main extends HttpServlet {
 
     if (req.getRequestURI().endsWith("/db"))
       showDatabase(req,resp);
-    else
-      showHome(req,resp);
+    else {
+      System.out.println("Showing home...");
+      showHome(req, resp);
+    }
   }
 
   private void showHome(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
