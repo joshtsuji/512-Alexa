@@ -99,6 +99,12 @@
       <version>2.2.2</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.ning</groupId>
+      <artifactId>async-http-client</artifactId>
+      <version>1.9.27</version>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>

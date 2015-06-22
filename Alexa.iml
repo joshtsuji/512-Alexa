@@ -32,5 +32,7 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.2.2" level="project" />
+    <orderEntry type="library" name="Maven: com.ning:async-http-client:1.9.27" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty:3.10.3.Final" level="project" />
   </component>
 </module>
