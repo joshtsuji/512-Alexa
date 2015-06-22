@@ -59,13 +59,6 @@ public class LightingClient {
                     .body(new JsonNode(body.toString()))
                     .asJson();
 
-            JSONObject body2 = new JSONObject();
-            body.put("bri", 25);
-
-            HttpResponse<JsonNode> jsonResponse2 = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
-                    .header("Content-Type", "application/json")
-                    .body(new JsonNode(body2.toString()))
-                    .asJson();
         }
         catch (Exception e) {
             e.printStackTrace();
