@@ -49,8 +49,9 @@ public class UberSpeechlet extends HttpServlet implements Speechlet {
     }
 
     public SpeechletResponse handleUberTime(Intent intent) {
+        int estimate = UberClient.getEstimate();
         return buildSpeechletResponse("Uber",
-                "The nearest Uber is 5 minutes away.",
+                "The nearest Uber is " + estimate + " seconds away.",
                 "", true);
     }
 
