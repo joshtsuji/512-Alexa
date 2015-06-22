@@ -29,27 +29,32 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
             throws SpeechletException {
 
         return buildSpeechletResponse("Lighting",
-                "Entering lighting control. What scene do you want to change to?",
-                "Say a scene name.",
+                "Entering lighting control. Ask to change to a scene, or to turn areas on or off.",
+                "Say a command.",
                 false);
     }
 
     public SpeechletResponse onIntent(final IntentRequest request, final Session session)
             throws SpeechletException {
 
-        // Get intent from the request object.
         Intent intent = request.getIntent();
         String intentName = (intent != null) ? intent.getName() : null;
 
-        // Note: If the session is started with an intent, no welcome message will be rendered;
-        // rather, the intent specific response will be returned.
-        if ("MyColorIsIntent".equals(intentName)) {
-            return setColorInSession(intent, session);
-        } else if ("WhatsMyColorIntent".equals(intentName)) {
-            return getColorFromSession(intent, session);
-        } else {
+        if ("ChangeScene".equals(intentName)) {
+            return handleChangeScene(intent);
+        }
+        else {
             throw new SpeechletException("Invalid Intent");
         }
+    }
+
+    public SpeechletResponse handleChangeScene(Intent intent) {
+        Map<String, Slot> slots = intent.getSlots();
+        Slot sceneSlot = slots.get("SceneName");
+        sceneSlot.getValue();
+        return buildSpeechletResponse("Lighting",
+                "Changing scene to " + sceneSlot.getValue(),
+                "", true);
     }
 
     public void onSessionEnded(final SessionEndedRequest request, final Session session)
@@ -57,24 +62,15 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
 
     }
 
-    /**
-     * Creates and returns a {@code SpeechletResponse} with a welcome message.
-     *
-     * @return SpeechletResponse spoken and visual welcome message
-     */
-    private SpeechletResponse getWelcomeResponse() {
-        // Create the welcome message.
-        String speechOutput =
-                "Welcome to the Alexa AppKit session sample app, "
-                        + "Please tell me your favorite color by saying, my favorite color is red";
 
-        String repromptText =
-                "Please tell me your favorite color by saying, my favorite color is red";
 
-        // Here we are setting shouldEndSession to false to not end the session and
-        // prompt the user for input
-        return buildSpeechletResponse("Welcome", speechOutput, repromptText, false);
-    }
+
+
+
+
+
+
+
 
     /**
      * Creates a {@code SpeechletResponse} for the intent and stores the extracted color in the
