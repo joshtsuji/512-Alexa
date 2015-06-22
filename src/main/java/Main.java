@@ -81,14 +81,14 @@ public class Main extends HttpServlet {
     sslContextFactory.setIncludeCipherSuites(Sdk.SUPPORTED_CIPHER_SUITES);
 
     HttpConfiguration httpConf = new HttpConfiguration();
-    httpConf.setSecurePort(Integer.valueOf(System.getenv("PORT")));
+    httpConf.setSecurePort(8888);
     httpConf.setSecureScheme("https");
     httpConf.addCustomizer(new SecureRequestCustomizer());
     HttpConnectionFactory httpConnectionFactory = new HttpConnectionFactory(httpConf);
 
     ServerConnector serverConnector =
             new ServerConnector(server, sslConnectionFactory, httpConnectionFactory);
-    serverConnector.setPort(Integer.valueOf(System.getenv("PORT")));
+    serverConnector.setPort(8888);
     server.setConnectors(new Connector[] { serverConnector
     });
 
