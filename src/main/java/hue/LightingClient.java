@@ -22,6 +22,10 @@ public class LightingClient {
         nameToId.put("rainbow", "a36922ffb-on-0");
     }
 
+    public static void turnOffLights() {
+        fireLightRequest("90fc10b39-on-0");
+    }
+
     public static String changeLights(String sceneInput) {
 
         String sceneGuess = "";
@@ -35,14 +39,7 @@ public class LightingClient {
         }
 
         try {
-            JSONObject body = new JSONObject();
-            body.put("scene", nameToId.get(sceneGuess));
-            body.put("transitiontime", 10);
-
-            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
-                    .header("Content-Type", "application/json")
-                    .body(new JsonNode(body.toString()))
-                    .asJson();
+            fireLightRequest(nameToId.get(sceneGuess));
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -52,38 +49,18 @@ public class LightingClient {
 
     }
 
-    /*
-    // Build the post string from an object
-    var post_data = "{\"scene\": \"" + sceneId + "\"}"
+    public static void fireLightRequest(String scene) {
+        try {
+            JSONObject body = new JSONObject();
+            body.put("scene", scene);
 
-    // An object of options to indicate where to post to
-    var post_options = {
-        host: '146.115.86.220',
-        port: '86',
-        path: '',
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': post_data.length
+            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
+                    .header("Content-Type", "application/json")
+                    .body(new JsonNode(body.toString()))
+                    .asJson();
         }
-    };
-
-    // Set up the request
-    var post_req = http.request(post_options, function(res) {
-        res.setEncoding('utf-8');
-        res.on('data', function (chunk) {
-            console.log('Response: ' + chunk);
-            postResponse({
-                title: "Changing scene.",
-                speech: "Changing scene to " + sceneName,
-                reprompt: "Which scene?",
-                end: true
-            }, callback);
-        });
-    });
-
-    // post the data
-    post_req.write(post_data);
-    post_req.end();
-     */
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
