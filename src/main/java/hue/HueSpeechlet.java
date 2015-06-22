@@ -53,11 +53,10 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
         Slot sceneSlot = slots.get("SceneName");
         String reqScene = sceneSlot.getValue();
 
-        LightingClient.changeLights(reqScene, null);
-
+        String scene = LightingClient.changeLights(reqScene);
 
         return buildSpeechletResponse("Lighting",
-                "Changing scene to " + sceneSlot.getValue(),
+                "Changing scene to " + scene + " after hearing " + reqScene,
                 "", true);
     }
 

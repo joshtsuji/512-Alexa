@@ -3,6 +3,7 @@ package hue;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;
 
@@ -20,16 +21,30 @@ public class LightingClient {
         nameToId.put("rainbow", "a36922ffb-on-0");
     }
 
-    public static void changeLights(String scene, Runnable after) {
+    public static String changeLights(String sceneInput) {
+
+        String sceneGuess = "";
+        int lowestSimilarity = Integer.MAX_VALUE;
+        for (String scene : nameToId.keySet()) {
+            int dist = StringUtils.getLevenshteinDistance(scene, sceneInput);
+            if (dist < lowestSimilarity) {
+                lowestSimilarity = dist;
+                sceneGuess = scene;
+            }
+        }
+
         try {
             HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
                     .header("Content-Type", "application/json")
-                    .body(new JsonNode("{'scene': '" + nameToId.get(scene) + "'}"))
+                    .body(new JsonNode("{'scene': '" + nameToId.get(sceneGuess) + "'}"))
                     .asJson();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+
+        return sceneGuess;
+
     }
 
     /*
