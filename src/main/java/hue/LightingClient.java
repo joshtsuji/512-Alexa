@@ -37,7 +37,7 @@ public class LightingClient {
         try {
             JSONObject body = new JSONObject();
             body.put("scene", nameToId.get(sceneGuess));
-            body.put("transitiontime", 30);
+            body.put("transitiontime", 10);
 
             HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
                     .header("Content-Type", "application/json")
