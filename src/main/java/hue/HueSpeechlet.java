@@ -28,7 +28,10 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
     public SpeechletResponse onLaunch(final LaunchRequest request, final Session session)
             throws SpeechletException {
 
-        return getWelcomeResponse();
+        return buildSpeechletResponse("Lighting",
+                "Entering lighting control. What scene do you want to change to?",
+                "Say a scene name.",
+                false);
     }
 
     public SpeechletResponse onIntent(final IntentRequest request, final Session session)
