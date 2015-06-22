@@ -73,7 +73,7 @@ public class Main extends HttpServlet {
     ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
     context.setContextPath("/");
     server.setHandler(context);
-    context.addServlet(new ServletHolder(new Main()),"/*");
+    context.addServlet(new ServletHolder(new Main()),"/");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet())), "/hue");
     server.start();
     server.join();
