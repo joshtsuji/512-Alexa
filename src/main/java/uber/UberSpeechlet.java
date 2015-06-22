@@ -6,7 +6,6 @@ import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
-import hue.LightingClient;
 
 import javax.servlet.http.HttpServlet;
 import java.util.Map;
@@ -50,12 +49,6 @@ public class UberSpeechlet extends HttpServlet implements Speechlet {
     }
 
     public SpeechletResponse handleUberTime(Intent intent) {
-        Map<String, Slot> slots = intent.getSlots();
-        Slot sceneSlot = slots.get("SceneName");
-        String reqScene = sceneSlot.getValue();
-
-        String scene = LightingClient.changeLights(reqScene);
-
         return buildSpeechletResponse("Uber",
                 "The nearest Uber is 5 minutes away.",
                 "", true);
