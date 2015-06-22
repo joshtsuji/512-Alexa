@@ -14,7 +14,7 @@ public class LightingClient {
     private static HashMap<String, String> nameToId = new HashMap<String, String>();
 
     static {
-        nameToId.put("light green", "01edc1907-on-0");
+        nameToId.put("light green", "afd39e8fa-on-0");
         nameToId.put("primaries", "b7a556b43-on-0");
         nameToId.put("turquoise", "0dd0eb23b-on-0");
         nameToId.put("rainbow", "a36922ffb-on-0");
