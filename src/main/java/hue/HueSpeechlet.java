@@ -7,11 +7,7 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -22,13 +18,10 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
     private static final String COLOR_KEY = "COLOR";
     private static final String COLOR_SLOT = "Color";
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().print("Hello from Hue Speechlet!");
-    }
-
     public void onSessionStarted(final SessionStartedRequest request, final Session session)
             throws SpeechletException {
+
+        System.out.println("Starting Alexa session.");
 
     }
 
