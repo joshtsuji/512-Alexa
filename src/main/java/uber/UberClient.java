@@ -18,7 +18,7 @@ public class UberClient {
             return jsonResponse.getBody().getArray().getJSONObject(0).getInt("estimate");
         }
         catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         return 0;
