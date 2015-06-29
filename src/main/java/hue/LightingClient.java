@@ -20,7 +20,7 @@ public class LightingClient {
         nameToId.put("primaries", "b7a556b43-on-0");
         nameToId.put("turquoise", "0dd0eb23b-on-0");
         nameToId.put("rainbow", "a36922ffb-on-0");
-        nameToId.put("red gradient", "27a3f34d1-on-0");
+        nameToId.put("red gradients", "27a3f34d1-on-0");
     }
 
     public static void turnOffLights() {
