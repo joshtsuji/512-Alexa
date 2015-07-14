@@ -73,28 +73,9 @@ public class Main extends HttpServlet {
 
     Server server = new Server(Integer.valueOf(System.getenv("PORT")));
 
-    /*SslConnectionFactory sslConnectionFactory = new SslConnectionFactory();
-    SslContextFactory sslContextFactory = sslConnectionFactory.getSslContextFactory();
-    sslContextFactory.setKeyStorePath(System.getProperty("javax.net.ssl.keyStore"));
-    sslContextFactory.setKeyStorePassword(System.getProperty("javax.net.ssl.keyStorePassword"));
-    sslContextFactory.setIncludeCipherSuites(Sdk.SUPPORTED_CIPHER_SUITES);
-
-    HttpConfiguration httpConf = new HttpConfiguration();
-    httpConf.setSecurePort(8888);
-    httpConf.setSecureScheme("https");
-    httpConf.addCustomizer(new SecureRequestCustomizer());
-    HttpConnectionFactory httpConnectionFactory = new HttpConnectionFactory(httpConf);
-
-    ServerConnector serverConnector =
-            new ServerConnector(server, sslConnectionFactory, httpConnectionFactory);
-    serverConnector.setPort(8888);
-    server.setConnectors(new Connector[] { serverConnector
-    });*/
-
     ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
     context.setContextPath("/");
     server.setHandler(context);
-    //context.addServlet(new ServletHolder(new Main()),"/");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(false))), "/hue");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(true))), "/huebedroom");
     context.addServlet(new ServletHolder(createServlet(new UberSpeechlet())), "/uber");
