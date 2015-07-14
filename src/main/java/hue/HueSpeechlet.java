@@ -18,6 +18,12 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
     private static final String COLOR_KEY = "COLOR";
     private static final String COLOR_SLOT = "Color";
 
+    boolean isBedroom = false;
+
+    public HueSpeechlet(boolean isBedroom) {
+        this.isBedroom = isBedroom;
+    }
+
     public void onSessionStarted(final SessionStartedRequest request, final Session session)
             throws SpeechletException {
 
@@ -39,6 +45,8 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
 
         Intent intent = request.getIntent();
         String intentName = (intent != null) ? intent.getName() : null;
+
+        LightingClient.isBedroom = this.isBedroom;
 
         if ("ChangeScene".equals(intentName)) {
             return handleChangeScene(intent);

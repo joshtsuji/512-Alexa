@@ -14,6 +14,9 @@ import java.util.HashMap;
 public class LightingClient {
 
     private static HashMap<String, String> nameToId = new HashMap<String, String>();
+    private static HashMap<String, String> nameToBedroomId = new HashMap<String, String>();
+
+    public static boolean isBedroom = false;
 
     static {
         nameToId.put("light green", "afd39e8fa-on-0");
@@ -21,6 +24,12 @@ public class LightingClient {
         nameToId.put("turquoise", "0dd0eb23b-on-0");
         nameToId.put("rainbow", "a36922ffb-on-0");
         nameToId.put("red gradients", "27a3f34d1-on-0");
+
+        nameToBedroomId.put("sunset", "db4cf55c3-on-0");
+    }
+
+    public static HashMap<String, String> getIdHashMap() {
+        return isBedroom ? nameToBedroomId : nameToId;
     }
 
     public static void turnOffLights() {
@@ -31,7 +40,7 @@ public class LightingClient {
 
         String sceneGuess = "";
         int lowestSimilarity = Integer.MAX_VALUE;
-        for (String scene : nameToId.keySet()) {
+        for (String scene : getIdHashMap().keySet()) {
             int dist = StringUtils.getLevenshteinDistance(scene, sceneInput);
             if (dist < lowestSimilarity) {
                 lowestSimilarity = dist;
@@ -40,7 +49,7 @@ public class LightingClient {
         }
 
         try {
-            fireLightRequest(nameToId.get(sceneGuess));
+            fireLightRequest(getIdHashMap().get(sceneGuess));
         }
         catch (Exception e) {
             e.printStackTrace();
