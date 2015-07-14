@@ -67,14 +67,14 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
         String scene = LightingClient.changeLights(reqScene);
 
         return buildSpeechletResponse("Lighting",
-                "Okay, changing lights to " + scene + ".",
+                "Okay, changing to " + scene + ".",
                 "", true);
     }
 
     public SpeechletResponse handleLightsOff(Intent intent) {
         LightingClient.turnOffLights();
         return buildSpeechletResponse("Lighting",
-                "Okay, turning off all lights",
+                "Okay.",
                 "", true);
     }
 
