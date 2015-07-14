@@ -96,7 +96,7 @@ public class Main extends HttpServlet {
     server.setHandler(context);
     //context.addServlet(new ServletHolder(new Main()),"/");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(false))), "/hue");
-    context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(true))), "/huebedroom"))
+    context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(true))), "/huebedroom");
     context.addServlet(new ServletHolder(createServlet(new UberSpeechlet())), "/uber");
     server.start();
     server.join();
