@@ -26,6 +26,8 @@ public class LightingClient {
         nameToId.put("red gradients", "27a3f34d1-on-0");
 
         nameToBedroomId.put("sunset", "db4cf55c3-on-0");
+        nameToBedroomId.put("turqoise", "33e6af684-on-0");
+        nameToBedroomId.put("rainbow", "2cda827f7-on-0");
     }
 
     public static HashMap<String, String> getIdHashMap() {
@@ -33,7 +35,7 @@ public class LightingClient {
     }
 
     public static void turnOffLights() {
-        fireLightRequest("90fc10b39-on-0");
+        fireLightRequest(isBedroom ? "699524d17-on-0" : "90fc10b39-on-0");
     }
 
     public static String changeLights(String sceneInput) {
