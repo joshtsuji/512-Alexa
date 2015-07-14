@@ -28,7 +28,7 @@ public class LightingClient {
         nameToBedroomId.put("sunset", "db4cf55c3-on-0");
         nameToBedroomId.put("turqoise", "33e6af684-on-0");
         nameToBedroomId.put("rainbow", "2cda827f7-on-0");
-        nameToBedroomId.put("night mode", "2e1a8bc01-on-0");
+        nameToBedroomId.put("night mode", "8dc47d2bf-on-0");
     }
 
     public static HashMap<String, String> getIdHashMap() {
