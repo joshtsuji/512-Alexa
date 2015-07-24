@@ -49,6 +49,10 @@ public class LightingClient {
     }
 
     public static void turnOffLights() {
+        turnOffLights(4);
+    }
+
+    public static void turnOffLights(int transitionTime) {
         fireLightRequest(isBedroom ? "699524d17-on-0" : "90fc10b39-on-0");
     }
 
@@ -85,9 +89,14 @@ public class LightingClient {
     }
 
     public static void fireLightRequest(String scene) {
+        fireLightRequest(scene, 4);
+    }
+
+    public static void fireLightRequest(String scene, int transitionTime) {
         try {
             JSONObject body = new JSONObject();
             body.put("scene", scene);
+            body.put("transitiontime", transitionTime);
 
             HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
                     .header("Content-Type", "application/json")

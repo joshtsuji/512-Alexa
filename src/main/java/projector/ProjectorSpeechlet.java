@@ -60,13 +60,13 @@ public class ProjectorSpeechlet extends HttpServlet implements Speechlet {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                LightingClient.turnOffLights();
+                LightingClient.turnOffLights(300);
             }
-        }, 10000);
+        }, 15000);
 
 
         return buildSpeechletResponse("Projector",
-                "Warming up the projector. Lighting will dim in thirty seconds.",
+                "Warming up the projector. Lighting will dim in one minute.",
                 "", true);
     }
 
