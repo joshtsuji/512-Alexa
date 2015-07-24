@@ -20,11 +20,13 @@ public class LightingClient {
 
     static {
         nameToId.put("light green", "afd39e8fa-on-0");
+        nameToId.put("green", "afd39e8fa-on-0");
         nameToId.put("primaries", "b7a556b43-on-0");
         nameToId.put("turquoise", "0dd0eb23b-on-0");
         nameToId.put("rainbow", "a36922ffb-on-0");
         nameToId.put("red gradients", "27a3f34d1-on-0");
-        nameToId.put("blue", "4a26e7ccc-on-0");
+        nameToId.put("sunrise", "4a26e7ccc-on-0");
+        nameToId.put("blue", "0b58d5a80-on-0");
 
         nameToBedroomId.put("sunset", "db4cf55c3-on-0");
         nameToBedroomId.put("turqoise", "33e6af684-on-0");
