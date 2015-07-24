@@ -54,7 +54,7 @@ public class ProjectorSpeechlet extends HttpServlet implements Speechlet {
 
     public SpeechletResponse handleTurnOn(Intent intent) {
         ProjectorClient.turnOn();
-        LightingClient.fireDimRequest(false, 45000);
+        LightingClient.fireDimRequest(false, 60000);
 
 
         return buildSpeechletResponse("Projector",
