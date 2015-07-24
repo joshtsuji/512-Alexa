@@ -67,7 +67,7 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
         String scene = LightingClient.changeLights(reqScene);
 
         return buildSpeechletResponse("Lighting",
-                "Okay, changing to " + scene + ".",
+                "Okay.",
                 "", true);
     }
 
