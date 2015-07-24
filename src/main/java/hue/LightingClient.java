@@ -24,6 +24,7 @@ public class LightingClient {
         nameToId.put("turquoise", "0dd0eb23b-on-0");
         nameToId.put("rainbow", "a36922ffb-on-0");
         nameToId.put("red gradients", "27a3f34d1-on-0");
+        nameToId.put("blue", "4a26e7ccc-on-0");
 
         nameToBedroomId.put("sunset", "db4cf55c3-on-0");
         nameToBedroomId.put("turqoise", "33e6af684-on-0");
@@ -40,6 +41,9 @@ public class LightingClient {
     }
 
     public static String changeLights(String sceneInput) {
+
+        if (sceneInput == null)
+            sceneInput = "";
 
         String sceneGuess = "";
         int lowestSimilarity = Integer.MAX_VALUE;
