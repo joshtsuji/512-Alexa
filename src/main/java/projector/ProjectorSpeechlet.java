@@ -53,7 +53,7 @@ public class ProjectorSpeechlet extends HttpServlet implements Speechlet {
 
     public SpeechletResponse handleTurnOn(Intent intent) {
         return buildSpeechletResponse("Projector",
-                "Warming up the projector. Lights will dim in thirty seconds.",
+                "Warming up the projector. Lighting will dim in thirty seconds.",
                 "", true);
     }
 
