@@ -53,7 +53,7 @@ public class LightingClient {
     }
 
     public static void turnOffLights(int transitionTime) {
-        fireLightRequest(isBedroom ? "699524d17-on-0" : "90fc10b39-on-0");
+        fireLightRequest(isBedroom ? "699524d17-on-0" : "90fc10b39-on-0", transitionTime);
     }
 
     public static void turnOnLights() {
