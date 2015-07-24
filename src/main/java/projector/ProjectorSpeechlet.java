@@ -6,6 +6,7 @@ import com.amazon.speech.speechlet.*;
 import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
+import hue.LightingClient;
 
 import javax.servlet.http.HttpServlet;
 import java.util.Map;
@@ -52,6 +53,8 @@ public class ProjectorSpeechlet extends HttpServlet implements Speechlet {
     }
 
     public SpeechletResponse handleTurnOn(Intent intent) {
+        ProjectorClient.turnOn();
+        LightingClient.turnOffLights();
         return buildSpeechletResponse("Projector",
                 "Warming up the projector. Lighting will dim in thirty seconds.",
                 "", true);
@@ -59,6 +62,8 @@ public class ProjectorSpeechlet extends HttpServlet implements Speechlet {
 
 
     public SpeechletResponse handleTurnOff(Intent intent) {
+        ProjectorClient.turnOff();
+        LightingClient.turnOnLights();
         return buildSpeechletResponse("Uber",
                 "Okay",
                 "", true);
