@@ -60,6 +60,10 @@ public class LightingClient {
         fireLightRequest(getIdHashMap().get(currentScene));
     }
 
+    public static void dimLightsSlowly() {
+
+    }
+
     public static String changeLights(String sceneInput) {
 
         if (sceneInput == null)
@@ -97,6 +101,24 @@ public class LightingClient {
             JSONObject body = new JSONObject();
             body.put("scene", scene);
             body.put("transitiontime", transitionTime);
+
+            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
+                    .header("Content-Type", "application/json")
+                    .body(new JsonNode(body.toString()))
+                    .asJson();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void fireDimRequest(boolean on, int time) {
+        try {
+            JSONObject body = new JSONObject();
+            body.put("bri", on? 255 : 0);
+            body.put("on", on);
+            body.put("transitiontime", time / 100);
 
             HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
                     .header("Content-Type", "application/json")

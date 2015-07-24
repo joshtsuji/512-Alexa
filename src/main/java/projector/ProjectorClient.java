@@ -8,7 +8,6 @@ import com.mashape.unirest.http.exceptions.UnirestException;
  */
 public class ProjectorClient {
     public static void turnOn() {
-        if (true) return;
         try {
             Unirest.get("http://146.115.86.220:85/event?projector").asString();
         } catch (UnirestException e) {
@@ -19,7 +18,6 @@ public class ProjectorClient {
     }
 
     public static void turnOff() {
-        if (true) return;
         try {
             Unirest.get("http://146.115.86.220:85/event?projector").asString();
             try {
