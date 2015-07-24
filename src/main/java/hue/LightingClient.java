@@ -18,6 +18,8 @@ public class LightingClient {
 
     public static boolean isBedroom = false;
 
+    public static String currentScene = "white";
+
     static {
         nameToId.put("light green", "afd39e8fa-on-0");
         nameToId.put("white", "9f3b39306-on-0");
@@ -50,6 +52,10 @@ public class LightingClient {
         fireLightRequest(isBedroom ? "699524d17-on-0" : "90fc10b39-on-0");
     }
 
+    public static void turnOnLights() {
+        fireLightRequest(getIdHashMap().get(currentScene));
+    }
+
     public static String changeLights(String sceneInput) {
 
         if (sceneInput == null)
@@ -64,6 +70,8 @@ public class LightingClient {
                 sceneGuess = scene;
             }
         }
+
+        currentScene = sceneGuess;
 
         try {
             fireLightRequest(getIdHashMap().get(sceneGuess));

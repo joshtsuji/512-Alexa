@@ -54,6 +54,9 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
         else if ("TurnOff".equals(intentName)) {
             return handleLightsOff(intent);
         }
+        else if ("TurnOn".equals(intentName)) {
+            return handleLightsOff(intent);
+        }
         else {
             throw new SpeechletException("Invalid Intent");
         }
@@ -73,6 +76,13 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
 
     public SpeechletResponse handleLightsOff(Intent intent) {
         LightingClient.turnOffLights();
+        return buildSpeechletResponse("Lighting",
+                "Okay.",
+                "", true);
+    }
+
+    public SpeechletResponse handleLightsOn(Intent intent) {
+        LightingClient.turnOnLights();
         return buildSpeechletResponse("Lighting",
                 "Okay.",
                 "", true);
