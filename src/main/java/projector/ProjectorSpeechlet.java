@@ -10,6 +10,8 @@ import hue.LightingClient;
 
 import javax.servlet.http.HttpServlet;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * This sample shows how to create a simple speechlet for handling intent requests and managing
@@ -54,16 +56,13 @@ public class ProjectorSpeechlet extends HttpServlet implements Speechlet {
 
     public SpeechletResponse handleTurnOn(Intent intent) {
         ProjectorClient.turnOn();
-        new Thread(new Runnable() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
             public void run() {
-                try {
-                    Thread.sleep(30000);
-                    LightingClient.turnOffLights();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                LightingClient.turnOffLights();
             }
-        }).start();
+        }, 10000);
 
 
         return buildSpeechletResponse("Projector",
