@@ -54,7 +54,18 @@ public class ProjectorSpeechlet extends HttpServlet implements Speechlet {
 
     public SpeechletResponse handleTurnOn(Intent intent) {
         ProjectorClient.turnOn();
-        LightingClient.turnOffLights();
+        new Thread(new Runnable() {
+            public void run() {
+                try {
+                    Thread.sleep(30000);
+                    LightingClient.turnOffLights();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+
         return buildSpeechletResponse("Projector",
                 "Warming up the projector. Lighting will dim in thirty seconds.",
                 "", true);
