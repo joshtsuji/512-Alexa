@@ -55,7 +55,7 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
             return handleLightsOff(intent);
         }
         else if ("TurnOn".equals(intentName)) {
-            return handleLightsOff(intent);
+            return handleLightsOn(intent);
         }
         else {
             throw new SpeechletException("Invalid Intent");
