@@ -4,6 +4,7 @@ import hue.HueSpeechlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import projector.ProjectorSpeechlet;
 import uber.UberSpeechlet;
 
 import javax.servlet.ServletException;
@@ -79,6 +80,7 @@ public class Main extends HttpServlet {
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(false))), "/hue");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(true))), "/huebedroom");
     context.addServlet(new ServletHolder(createServlet(new UberSpeechlet())), "/uber");
+    context.addServlet(new ServletHolder(createServlet(new ProjectorSpeechlet())), "/projector");
     server.start();
     server.join();
   }
