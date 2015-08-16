@@ -1,9 +1,6 @@
 package hue;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,22 +24,6 @@ public class HueServlet extends HttpServlet {
         out.println("<h1>" + "HELLO SERVICE" + "</h1>");
 
         System.out.println("hey I've been got");
-    }
-
-    public void init(ServletConfig servletConfig) throws ServletException {
-
-    }
-
-    public ServletConfig getServletConfig() {
-        return null;
-    }
-
-    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
-
-    }
-
-    public String getServletInfo() {
-        return null;
     }
 
     public void destroy() {
