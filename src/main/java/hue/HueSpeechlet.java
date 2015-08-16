@@ -7,7 +7,11 @@ import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.amazon.speech.ui.Reprompt;
 import com.amazon.speech.ui.SimpleCard;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -22,6 +26,11 @@ public class HueSpeechlet extends HttpServlet implements Speechlet {
 
     public HueSpeechlet(boolean isBedroom) {
         this.isBedroom = isBedroom;
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(req.getQueryString());
     }
 
     public void onSessionStarted(final SessionStartedRequest request, final Session session)
