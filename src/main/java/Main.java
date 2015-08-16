@@ -1,5 +1,6 @@
 import com.amazon.speech.speechlet.Speechlet;
 import com.amazon.speech.speechlet.servlet.SpeechletServlet;
+import hue.HueServlet;
 import hue.HueSpeechlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -77,6 +78,7 @@ public class Main extends HttpServlet {
     ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
     context.setContextPath("/");
     server.setHandler(context);
+    context.addServlet(new ServletHolder(new HueServlet()), "/huecontrol");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(false))), "/hue");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(true))), "/huebedroom");
     context.addServlet(new ServletHolder(createServlet(new UberSpeechlet())), "/uber");
