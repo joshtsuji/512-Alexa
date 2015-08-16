@@ -25,6 +25,8 @@ public class HueServlet extends HttpServlet {
         // Actual logic goes here.
         PrintWriter out = response.getWriter();
         out.println("<h1>" + "HELLO SERVICE" + "</h1>");
+
+        System.out.println("hey I've been got");
     }
 
     public void init(ServletConfig servletConfig) throws ServletException {
