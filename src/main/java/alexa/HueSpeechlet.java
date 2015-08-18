@@ -59,21 +59,21 @@ public class HueSpeechlet extends BaseSpeechlet {
 
         return buildSpeechletResponse("Lighting",
                 "Okay.",
-                "", true);
+                "", false);
     }
 
     public SpeechletResponse handleLightsOff(Intent intent) {
         LightingClient.turnOffLights();
         return buildSpeechletResponse("Lighting",
                 "Okay.",
-                "", true);
+                "", false);
     }
 
     public SpeechletResponse handleLightsOn(Intent intent) {
         LightingClient.turnOnLights();
         return buildSpeechletResponse("Lighting",
                 "Okay." + LightingClient.currentScene,
-                "", true);
+                "", false);
     }
 
 }
