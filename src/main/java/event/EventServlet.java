@@ -1,4 +1,4 @@
-package hue;
+package event;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,13 +9,20 @@ import java.io.IOException;
 /**
  * Created by hubspot on 8/16/15.
  */
-public class HueServlet extends HttpServlet {
+public class EventServlet extends HttpServlet {
+
+    Mode activeMode = new Mode();
 
     public void doGet(HttpServletRequest request,
                       HttpServletResponse response)
             throws ServletException, IOException
     {
-        LightingClient.changeToNearestSceneMatchingNAme(request.getParameter("scene"));
+        String event = request.getParameter("event");
+
+        if (event.equals("barproximity")) {
+            boolean active = request.getParameter("active").equals("true");
+            activeMode.handleBarProximity(active);
+        }
     }
 
     public void destroy() {

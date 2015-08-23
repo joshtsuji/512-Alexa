@@ -1,12 +1,13 @@
+import alexa.HueSpeechlet;
+import alexa.ProjectorSpeechlet;
+import alexa.UberSpeechlet;
 import com.amazon.speech.speechlet.Speechlet;
 import com.amazon.speech.speechlet.servlet.SpeechletServlet;
+import event.EventServlet;
 import hue.HueServlet;
-import alexa.HueSpeechlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import alexa.ProjectorSpeechlet;
-import alexa.UberSpeechlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -79,6 +80,7 @@ public class Main extends HttpServlet {
     context.setContextPath("/");
     server.setHandler(context);
     context.addServlet(new ServletHolder(new HueServlet()), "/huecontrol");
+    context.addServlet(new ServletHolder(new EventServlet()), "/notify");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(false))), "/hue");
     context.addServlet(new ServletHolder(createServlet(new HueSpeechlet(true))), "/huebedroom");
     context.addServlet(new ServletHolder(createServlet(new UberSpeechlet())), "/uber");

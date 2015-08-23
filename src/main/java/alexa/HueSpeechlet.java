@@ -55,7 +55,7 @@ public class HueSpeechlet extends BaseSpeechlet {
         Slot sceneSlot = slots.get("SceneName");
         String reqScene = sceneSlot.getValue();
 
-        String scene = LightingClient.changeLights(reqScene);
+        String scene = LightingClient.changeToNearestSceneMatchingNAme(reqScene);
 
         return buildSpeechletResponse("Lighting",
                 "Okay.",

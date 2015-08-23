@@ -6,6 +6,7 @@ import com.mashape.unirest.http.Unirest;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 
+import java.awt.*;
 import java.util.HashMap;
 
 /**
@@ -15,6 +16,7 @@ public class LightingClient {
 
     private static HashMap<String, String> nameToId = new HashMap<String, String>();
     private static HashMap<String, String> nameToBedroomId = new HashMap<String, String>();
+    private static HashMap<String, Integer> nameToLight = new HashMap<String, Integer>();
 
     public static boolean isBedroom = false;
 
@@ -42,6 +44,8 @@ public class LightingClient {
         nameToBedroomId.put("turqoise", "33e6af684-on-0");
         nameToBedroomId.put("rainbow", "2cda827f7-on-0");
         nameToBedroomId.put("night mode", "8dc47d2bf-on-0");
+
+        nameToLight.put("bar", 10);
     }
 
     public static HashMap<String, String> getIdHashMap() {
@@ -53,18 +57,33 @@ public class LightingClient {
     }
 
     public static void turnOffLights(int transitionTime) {
-        fireLightRequest(isBedroom ? "699524d17-on-0" : "90fc10b39-on-0", transitionTime);
+        fireSceneRequest(isBedroom ? "699524d17-on-0" : "90fc10b39-on-0", transitionTime);
     }
 
     public static void turnOnLights() {
-        fireLightRequest(getIdHashMap().get(currentScene));
+        fireSceneRequest(getIdHashMap().get(currentScene));
     }
 
-    public static void dimLightsSlowly() {
+    public static void turnOnLight(String light) {
 
     }
 
-    public static String changeLights(String sceneInput) {
+    public static void turnOnLight(String light, int r, int g, int b) {
+        float[] hsv = colorToHSB(r, g, b);
+        fireSingleLightRequest(nameToLight.get(light), hsv[0], hsv[1], hsv[2]);
+    }
+
+    public static void turnOffLight(String light) {
+
+    }
+
+    public static float[] colorToHSB(int r, int g, int b) {
+        float[] hsv = new float[3];
+        Color.RGBtoHSB(r,g,b,hsv);
+        return hsv;
+    }
+
+    public static String changeToNearestSceneMatchingNAme(String sceneInput) {
 
         if (sceneInput == null)
             sceneInput = "";
@@ -82,7 +101,7 @@ public class LightingClient {
         currentScene = sceneGuess;
 
         try {
-            fireLightRequest(getIdHashMap().get(sceneGuess));
+            fireSceneRequest(getIdHashMap().get(sceneGuess));
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -92,11 +111,28 @@ public class LightingClient {
 
     }
 
-    public static void fireLightRequest(String scene) {
-        fireLightRequest(scene, 4);
+    public static void fireSingleLightRequest(int light, float hue, float sat, float bri) {
+        try {
+            JSONObject body = new JSONObject();
+            body.put("bri", bri);
+            body.put("hue", hue);
+
+            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/lights/" + light + "/state")
+                    .header("Content-Type", "application/json")
+                    .body(new JsonNode(body.toString()))
+                    .asJson();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void fireLightRequest(String scene, int transitionTime) {
+    public static void fireSceneRequest(String scene) {
+        fireSceneRequest(scene, 4);
+    }
+
+    public static void fireSceneRequest(String scene, int transitionTime) {
         try {
             JSONObject body = new JSONObject();
             body.put("scene", scene);
@@ -113,7 +149,7 @@ public class LightingClient {
         }
     }
 
-    public static void fireDimRequest(boolean on, int time) {
+    public static void fireDimAllLightsRequest(boolean on, int time) {
         try {
             JSONObject body = new JSONObject();
             body.put("bri", on? 255 : 0);

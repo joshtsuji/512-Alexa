@@ -39,7 +39,7 @@ public class ProjectorSpeechlet extends BaseSpeechlet {
 
     public SpeechletResponse handleTurnOn(Intent intent) {
         ProjectorClient.turnOn();
-        LightingClient.fireDimRequest(false, 60000);
+        LightingClient.fireDimAllLightsRequest(false, 60000);
 
 
         return buildSpeechletResponse("Projector",
@@ -50,7 +50,7 @@ public class ProjectorSpeechlet extends BaseSpeechlet {
 
     public SpeechletResponse handleTurnOff(Intent intent) {
         ProjectorClient.turnOff();
-        LightingClient.fireDimRequest(true, 10000);
+        LightingClient.fireDimAllLightsRequest(true, 10000);
         return buildSpeechletResponse("Uber",
                 "Okay",
                 "", true);
