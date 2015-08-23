@@ -67,7 +67,7 @@ public class LightingClient {
 
     }
 
-    public static void turnOnLight(String light, int h, int s, int b) {
+    public static void turnOnLight(String light, int h, int s, int b, int time) {
         fireSingleLightRequest(nameToLight.get(light), h, s, b);
     }
 
@@ -103,12 +103,13 @@ public class LightingClient {
 
     }
 
-    public static void fireSingleLightRequest(int light, float hue, float sat, float bri) {
+    public static void fireSingleLightRequest(int light, float hue, float sat, float bri, int time) {
         try {
             JSONObject body = new JSONObject();
             body.put("on", bri > 0);
             body.put("bri", bri);
             body.put("hue", hue);
+            body.put("time", time / 100);
 
             System.out.println("Firing light request.");
 
