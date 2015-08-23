@@ -12,10 +12,10 @@ public class Mode {
     public void handleBarProximity(boolean active) {
         if (active) {
             timeActive = new Date();
-            LightingClient.turnOnLight("bar", 0, 255, 255, 3000);
+            LightingClient.changeSingleLight("bar", 0, 255, 255, 1000);
         }
         else {
-            LightingClient.turnOnLight("bar", 0, 0, 0, 10000);
+            LightingClient.changeSingleLight("bar", 0, 0, 0, 10000);
         }
     }
 }

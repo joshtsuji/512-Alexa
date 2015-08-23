@@ -63,11 +63,11 @@ public class LightingClient {
         fireSceneRequest(getIdHashMap().get(currentScene));
     }
 
-    public static void turnOnLight(String light) {
+    public static void changeSingleLight(String light) {
 
     }
 
-    public static void turnOnLight(String light, int h, int s, int b, int time) {
+    public static void changeSingleLight(String light, int h, int s, int b, int time) {
         fireSingleLightRequest(nameToLight.get(light), h, s, b, time);
     }
 
