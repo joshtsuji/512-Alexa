@@ -6,7 +6,6 @@ import com.mashape.unirest.http.Unirest;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
 
-import java.awt.*;
 import java.util.HashMap;
 
 /**
@@ -69,7 +68,7 @@ public class LightingClient {
     }
 
     public static void turnOnLight(String light, int h, int s, int b) {
-        fireSingleLightRequest(nameToLight.get(light), h, s, b;
+        fireSingleLightRequest(nameToLight.get(light), h, s, b);
     }
 
     public static void turnOffLight(String light) {
