@@ -114,6 +114,7 @@ public class LightingClient {
     public static void fireSingleLightRequest(int light, float hue, float sat, float bri) {
         try {
             JSONObject body = new JSONObject();
+            body.put("on", bri > 0);
             body.put("bri", bri);
             body.put("hue", hue);
 
