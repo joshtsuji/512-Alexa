@@ -68,7 +68,7 @@ public class LightingClient {
     }
 
     public static void turnOnLight(String light, int h, int s, int b, int time) {
-        fireSingleLightRequest(nameToLight.get(light), h, s, b);
+        fireSingleLightRequest(nameToLight.get(light), h, s, b, time);
     }
 
     public static void turnOffLight(String light) {
