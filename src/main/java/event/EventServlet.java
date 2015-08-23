@@ -21,6 +21,7 @@ public class EventServlet extends HttpServlet {
 
         if (event.equals("barproximity")) {
             boolean active = request.getParameter("active").equals("true");
+            System.out.println("Handling bar proximity.");
             activeMode.handleBarProximity(active);
         }
     }
