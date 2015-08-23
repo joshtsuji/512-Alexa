@@ -68,19 +68,12 @@ public class LightingClient {
 
     }
 
-    public static void turnOnLight(String light, int r, int g, int b) {
-        float[] hsv = colorToHSB(r, g, b);
-        fireSingleLightRequest(nameToLight.get(light), hsv[0], hsv[1], hsv[2]);
+    public static void turnOnLight(String light, int h, int s, int b) {
+        fireSingleLightRequest(nameToLight.get(light), h, s, b;
     }
 
     public static void turnOffLight(String light) {
 
-    }
-
-    public static float[] colorToHSB(int r, int g, int b) {
-        float[] hsv = new float[3];
-        Color.RGBtoHSB(r,g,b,hsv);
-        return hsv;
     }
 
     public static String changeToNearestSceneMatchingNAme(String sceneInput) {

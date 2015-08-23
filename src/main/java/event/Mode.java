@@ -8,10 +8,10 @@ import hue.LightingClient;
 public class Mode {
     public void handleBarProximity(boolean active) {
         if (active) {
-            LightingClient.turnOnLight("bar", 255, 0, 0);
+            LightingClient.turnOnLight("bar", 0, 255, 255);
         }
         else {
-            LightingClient.turnOnLight("bar", 0, 255, 0);
+            LightingClient.turnOnLight("bar", 0, 0, 0);
         }
     }
 }
