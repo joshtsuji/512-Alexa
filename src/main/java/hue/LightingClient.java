@@ -109,7 +109,7 @@ public class LightingClient {
             body.put("on", bri > 0);
             body.put("bri", bri);
             body.put("hue", hue);
-            body.put("time", time / 100);
+            body.put("transitiontime", time / 100);
 
             System.out.println("Firing light request.");
 
