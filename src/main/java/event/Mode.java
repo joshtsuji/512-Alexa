@@ -25,7 +25,7 @@ public class Mode {
             if (safetyTimer != null)
                 safetyTimer.stop();
 
-            safetyTimer = new Timer((int)(new Date().getTime() - timeActive.getTime()), new ActionListener() {
+            safetyTimer = new Timer(turnOffDelay, new ActionListener() {
 
                 public void actionPerformed(ActionEvent arg0) {
                     LightingClient.changeSingleLight("bar", 0, 0, 0, 5000);
