@@ -117,6 +117,8 @@ public class LightingClient {
             body.put("bri", bri);
             body.put("hue", hue);
 
+
+
             HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/lights/" + light + "/state")
                     .header("Content-Type", "application/json")
                     .body(new JsonNode(body.toString()))
