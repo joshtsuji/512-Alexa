@@ -39,6 +39,7 @@ public class LightingClient {
         nameToId.put("blue", "0b58d5a80-on-0");
         nameToId.put("blue and white", "0b58d5a80-on-0");
         nameToId.put("night mode", "1e22c6c3d-on-0");
+        nameToId.put("dark rainbow", "28345cc1b-on-0");
 
         nameToBedroomId.put("sunset", "db4cf55c3-on-0");
         nameToBedroomId.put("turqoise", "33e6af684-on-0");
