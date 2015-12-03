@@ -39,6 +39,8 @@ public class LightingClient {
         nameToId.put("blue", "0b58d5a80-on-0");
         nameToId.put("blue and white", "0b58d5a80-on-0");
         nameToId.put("night mode", "1e22c6c3d-on-0");
+        nameToId.put("night", "1e22c6c3d-on-0");
+        nameToId.put("dark mode", "1e22c6c3d-on-0");
         nameToId.put("dark rainbow", "28345cc1b-on-0");
 
         nameToBedroomId.put("sunset", "db4cf55c3-on-0");
@@ -116,7 +118,7 @@ public class LightingClient {
             System.out.println("Firing light request.");
 
 
-            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/lights/" + light + "/state")
+            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://209.6.233.80:86/api/newdeveloper/lights/" + light + "/state")
                     .header("Content-Type", "application/json")
                     .body(new JsonNode(body.toString()))
                     .asJson();
@@ -137,7 +139,7 @@ public class LightingClient {
             body.put("scene", scene);
             body.put("transitiontime", transitionTime);
 
-            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
+            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://209.6.233.80:86/api/newdeveloper/groups/0/action")
                     .header("Content-Type", "application/json")
                     .body(new JsonNode(body.toString()))
                     .asJson();
@@ -155,7 +157,7 @@ public class LightingClient {
             body.put("on", on);
             body.put("transitiontime", time / 100);
 
-            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://146.115.86.220:86/api/newdeveloper/groups/0/action")
+            HttpResponse<JsonNode> jsonResponse = Unirest.put("http://209.6.233.80:86/api/newdeveloper/groups/0/action")
                     .header("Content-Type", "application/json")
                     .body(new JsonNode(body.toString()))
                     .asJson();

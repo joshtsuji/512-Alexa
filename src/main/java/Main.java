@@ -20,7 +20,7 @@ import java.sql.*;
 
 public class Main extends HttpServlet {
 
-  public static final String HOME_IP = "146.115.86.220";
+  public static final String HOME_IP = "209.6.233.80";
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
